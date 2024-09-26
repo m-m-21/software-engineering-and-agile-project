@@ -1,8 +1,9 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Welcome to the home page")
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include('accounts.urls')),
-    path('', lambda request: render(request, 'home.html'), name='home'),  # Dummy home view for testing
+    path('', home, name='home'),
 ]

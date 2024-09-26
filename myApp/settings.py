@@ -9,7 +9,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '%r8djmpqwa2%i%(=dpb0ey_5nmk*0g20+q_3y
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['softwareengineeringproject.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['softwareengineeringproject-3862c6f0bca3.herokuapp.com', 'localhost', '127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -81,4 +81,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-CSRF_TRUSTED_ORIGINS = ['https://softwareengineeringproject.herokuapp.com']
+DISABLE_COLLECTSTATIC = 0
+
+CSRF_TRUSTED_ORIGINS = ['https://softwareengineeringproject-3862c6f0bca3.herokuapp.com']
