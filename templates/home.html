@@ -1,8 +1,18 @@
 {% extends 'base.html' %}
-
-{% block title %}Home{% endblock %}
-
 {% block content %}
-  <h2>Welcome, {{ user.username }}!</h2>
-  <p>You have successfully logged in.</p>
+  <h1>Videos</h1>
+  <div class="grid">
+    {% for video in videos %}
+      <div class="video-item">
+        <h2>{{ video.title }}</h2>
+        <a href="{% url 'video_detail' video.id %}">
+          <img src="{{ video.url }}" alt="{{ video.title }}">
+        </a>
+        <p>{{ video.description }}</p>
+      </div>
+    {% endfor %}
+  </div>
+  {% if user.is_superuser %}
+    <a href="{% url 'add_video' %}">Add Video</a>
+  {% endif %}
 {% endblock %}

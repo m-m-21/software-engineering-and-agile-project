@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h1>{{ video.title }}</h1>
+  <video controls>
+    <source src="{{ video.url }}" type="video/mp4">
+  </video>
+  <p>{{ video.description }}</p>
+  <p>Duration: {{ video.duration }}</p>
+
+  <h3>Comments:</h3>
+  <ul>
+    {% for comment in comments %}
+      <li>{{ comment.user.username }}: {{ comment.text }} ({{ comment.created_at }})</li>
+    {% empty %}
+      <li>No comments yet.</li>
+    {% endfor %}
+  </ul>
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <button type="submit">Add Comment</button>
+  </form>
+
+  {% if user.is_superuser %}
+    <a href="{% url 'edit_video' video.id %}">Edit Video</a>
+    <a href="{% url 'delete_video' video.id %}">Delete Video</a>
+  {% endif %}
+{% endblock %}
