@@ -1,11 +1,13 @@
 import os
 from pathlib import Path
 
+from django.conf.global_settings import LOGIN_REDIRECT_URL, LOGOUT_REDIRECT_URL
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', ' %r8djmpqwa2%i%(=dpb0ey_5nmk*0g20+q_3ykp#xte16=l1l0')
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     'softwareengineeringproject-3862c6f0bca3.herokuapp.com',
@@ -67,16 +69,20 @@ DATABASES = {
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'OPTIONS': {
+            'min_length': 1, #Any password length
+        }
     },
-    # Add other validators as needed
 ]
 
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login'
+
+REDIRECT_URL = 'signup'
+
 # Internationalization
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
