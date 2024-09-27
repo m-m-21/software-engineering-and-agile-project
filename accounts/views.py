@@ -49,8 +49,8 @@ def add_video(request):
     if request.method == 'POST':
         form = VideoForm(request.POST)
         if form.is_valid():
-            video =form.save(commit=False)
-            video.user = request.user
+            video = form.save(commit=False)
+            video.owner = request.user
             video.save()
             messages.success(request, 'Video added successfully!')
             return redirect('home')

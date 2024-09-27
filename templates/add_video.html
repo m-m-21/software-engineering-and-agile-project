@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
+
 {% block content %}
-  <h1>Add Video</h1>
-  <form method="POST">
+<h2>Add a New Video</h2>
+
+<form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Add Video</button>
-  </form>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<a href="{% url 'home' %}">Back to Home</a>
 {% endblock %}

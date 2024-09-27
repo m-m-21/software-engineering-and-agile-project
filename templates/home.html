@@ -1,18 +1,26 @@
 {% extends 'base.html' %}
+
 {% block content %}
-  <h1>Videos</h1>
-  <div class="grid">
+<h1>Videos</h1>
+
+<div class="video-grid">
     {% for video in videos %}
-      <div class="video-item">
-        <h2>{{ video.title }}</h2>
-        <a href="{% url 'video_detail' video.id %}">
-          <img src="{{ video.url }}" alt="{{ video.title }}">
-        </a>
-        <p>{{ video.description }}</p>
-      </div>
+        <div class="video-card">
+            <h2>{{ video.title }}</h2>
+            <a href="{% url 'video_detail' video.id %}">
+                <video width="320" height="240" controls>
+                    <source src="{{ video.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </a>
+            <p>{{ video.description }}</p>
+        </div>
     {% endfor %}
-  </div>
-  {% if user.is_superuser %}
-    <a href="{% url 'add_video' %}">Add Video</a>
-  {% endif %}
+</div>
+
+{% if user.is_staff %}
+    <!-- Only show this button for admin users -->
+    <a href="{% url 'add_video' %}" class="btn btn-primary">Add Video</a>
+{% endif %}
+
 {% endblock %}
